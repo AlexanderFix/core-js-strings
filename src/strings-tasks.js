@@ -193,7 +193,7 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes() => 0
  */
 function sumOfCodes(str) {
-  if (str.valueOf === 'string') {
+  if (typeof str === 'string') {
     let sum = 0;
     for (let index = 0; index < str.length; index += 1) {
       sum += Number(str[index].charCodeAt());
@@ -214,8 +214,8 @@ function sumOfCodes(str) {
  *   startsWith('Hello World', 'World') => false
  *   startsWith('Hello World', 'Hello') => true
  */
-function startsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function startsWith(str, substr) {
+  return str.startsWith(substr);
 }
 
 /**
@@ -229,8 +229,8 @@ function startsWith(/* str, substr */) {
  *   endsWith('Hello World', 'World') => true
  *   endsWith('Hello World', 'Hello') => false
  */
-function endsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function endsWith(str, substr) {
+  return str.endsWith(substr);
 }
 
 /**
@@ -246,8 +246,13 @@ function endsWith(/* str, substr */) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  if (minutes < 10)
+    return '0'.padStart(0) + minutes + ':'.padEnd(seconds.length) + seconds;
+  if (seconds < 10)
+    return minutes + ':'.padEnd(seconds.length) + '0'.padStart(0) + seconds;
+  if (seconds < 10 && minutes < 10) return '0'.padStart(0) + minutes + ':'.padEnd(seconds.length) + '0'.padStart(0) + seconds;
+  return minutes + ':'.padEnd(seconds.length) + seconds;
 }
 
 /**
